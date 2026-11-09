@@ -94,9 +94,11 @@ h1 span { color: var(--accent); }
     <p class="sub">Saída na sexta, 22 de janeiro de 2027. Sete pessoas, uma Spin e uns 640 km de estrada até a vila.</p>
   </header>
 
-  <section class="sign" aria-live="polite">
+  <section class="sign" aria-live="polite" style="background:#12302e;color:#e6f0ee">
     <div class="label">Faltam</div>
-    <div class="clock" id="clock">
+    <script src="https://cdn.logwork.com/widget/countdown.js"></script>
+    <a href="https://logwork.com/countdown-timer" class="countdown-timer" data-timezone="America/Fortaleza" data-language="pt" data-textcolor="#e6f0ee" data-date="2027-01-22 00:00" data-background="#12302e" data-digitscolor="#f0a35e" data-unitscolor="#9DB7B2">Rumo a Jeri</a>
+    <div class="clock" id="clock" hidden>
       <div class="unit"><div class="num" id="d">--</div><small>dias</small></div>
       <div class="unit"><div class="num" id="h">--</div><small>horas</small></div>
       <div class="unit"><div class="num" id="m">--</div><small>min</small></div>
