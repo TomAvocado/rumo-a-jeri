@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>*{box-sizing:border-box}body{margin:0}</style>
+<style>*{box-sizing:border-box}body{margin:0}[hidden]{display:none!important}</style>
 <title>Rumo a Jeri</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Figtree:wght@400;500;700&display=swap">
@@ -58,6 +58,7 @@ h1 span { color: var(--accent); }
 .unit small { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; opacity: .7; font-weight: 700; }
 .done { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 10vw, 80px); line-height: 1; color: var(--accent); }
 
+.widget-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; padding-block: 8px; }
 .horizon { height: 96px; width: 100%; max-width: 100%; display: block; }
 .horizon .d1 { fill: var(--dune); } .horizon .d2 { fill: var(--dune-2); } .horizon .sun { fill: var(--sun); }
 .car-body { fill: var(--accent); } .car-glass { fill: var(--bg); } .car-dark { fill: var(--fg); }
@@ -94,10 +95,9 @@ h1 span { color: var(--accent); }
     <p class="sub">Saída na sexta, 22 de janeiro de 2027. Sete pessoas, uma Spin e uns 640 km de estrada até a vila.</p>
   </header>
 
-  <section class="sign" aria-live="polite" style="background:#12302e;color:#e6f0ee">
-    <div class="label">Faltam</div>
+  <section class="widget-card" aria-live="polite">
     <script src="https://cdn.logwork.com/widget/countdown.js"></script>
-    <a href="https://logwork.com/countdown-timer" class="countdown-timer" data-timezone="America/Fortaleza" data-language="pt" data-textcolor="#e6f0ee" data-date="2027-01-22 00:00" data-background="#12302e" data-digitscolor="#f0a35e" data-unitscolor="#9DB7B2">Rumo a Jeri</a>
+    <a href="https://logwork.com/countdown-timer" class="countdown-timer" data-timezone="America/Fortaleza" data-language="pt" data-textcolor="#12302e" data-date="2027-01-22 00:00" data-background="#12302e" data-digitscolor="#f0a35e" data-unitscolor="#4e6b67">Rumo a Jeri</a>
     <div class="clock" id="clock" hidden>
       <div class="unit"><div class="num" id="d">--</div><small>dias</small></div>
       <div class="unit"><div class="num" id="h">--</div><small>horas</small></div>
