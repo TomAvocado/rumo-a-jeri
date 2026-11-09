@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>*{box-sizing:border-box}body{margin:0}</style>
+<title>Rumo a Jeri</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Figtree:wght@400;500;700&display=swap">
+<style>
+/* Layout: one column, a road-sign style countdown over a dune horizon; trip facts as a quiet route strip below. */
+:root {
+  --bg: #E6F0EE;          /* lagoon mist */
+  --fg: #12302E;          /* deep lagoon ink */
+  --muted: #4E6B67;
+  --dune: #D8B47A;        /* dune sand */
+  --dune-2: #C79A5A;
+  --accent: #D9572F;      /* Jeri sunset */
+  --panel: #F6FAF9;
+  --line: #BFD3CF;
+  --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1D1F; --fg: #E7F1EE; --muted: #9DB7B2; --dune: #8C6B3C; --dune-2: #6E522C;
+    --accent: #FF8457; --panel: #132A2C; --line: #24413F; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1D1F; --fg: #E7F1EE; --muted: #9DB7B2; --dune: #8C6B3C; --dune-2: #6E522C;
+  --accent: #FF8457; --panel: #132A2C; --line: #24413F; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+.wrap {
+  max-width: 820px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 56px;
+  display: grid; gap: 28px;
+}
+.eyebrow { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+h1 { font-family: var(--display); font-weight: 900; font-size: clamp(48px, 11vw, 96px); line-height: .9; margin: 6px 0 0; text-wrap: balance; letter-spacing: .01em; }
+h1 span { color: var(--accent); }
+.sub { color: var(--muted); margin: 10px 0 0; max-width: 60ch; }
+
+.sign {
+  background: var(--fg); color: var(--bg);
+  border-radius: 14px; padding: 22px 18px 18px;
+  display: grid; gap: 14px;
+}
+.sign .label { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .75; font-weight: 700; }
+.clock { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.unit { display: grid; gap: 2px; }
+.num { font-family: var(--display); font-weight: 900; font-size: clamp(54px, 15vw, 120px); line-height: 1; font-variant-numeric: tabular-nums; }
+.unit:first-child .num { color: var(--accent); }
+.unit small { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; opacity: .7; font-weight: 700; }
+.done { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 10vw, 80px); line-height: 1; color: var(--accent); }
+
+.horizon { height: 70px; max-width: 100%; display: block; }
+.horizon .d1 { fill: var(--dune); } .horizon .d2 { fill: var(--dune-2); } .horizon .sun { fill: var(--accent); }
+
+.route { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 14px; }
+.route h2 { font-family: var(--display); font-weight: 700; font-size: 26px; margin: 0; letter-spacing: .02em; }
+.stops { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.stop { border-left: 3px solid var(--line); padding-left: 10px; min-width: 0; }
+.stop b { display: block; font-size: 15px; }
+.stop span { color: var(--muted); font-size: 14px; }
+.stop.hl { border-color: var(--accent); }
+.bar { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); width: 0; border-radius: 99px; }
+.barnote { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: no-preference) { .num { transition: color .3s; } }
+</style>
+</head>
+<body>
+
+<main class="wrap">
+  <header>
+    <div class="eyebrow">São Luís → Jericoacoara</div>
+    <h1>Rumo a <span>Jeri</span></h1>
+    <p class="sub">Saída na sexta, 22 de janeiro de 2027. Sete pessoas, uma Spin e uns 640 km de estrada até a vila.</p>
+  </header>
+
+  <section class="sign" aria-live="polite">
+    <div class="label">Faltam</div>
+    <div class="clock" id="clock">
+      <div class="unit"><div class="num" id="d">--</div><small>dias</small></div>
+      <div class="unit"><div class="num" id="h">--</div><small>horas</small></div>
+      <div class="unit"><div class="num" id="m">--</div><small>min</small></div>
+      <div class="unit"><div class="num" id="s">--</div><small>seg</small></div>
+    </div>
+    <div class="done" id="done" hidden>Pé na estrada!</div>
+  </section>
+
+  <svg class="horizon" viewBox="0 0 800 70" preserveAspectRatio="none" aria-hidden="true">
+    <circle class="sun" cx="610" cy="44" r="22"/>
+    <path class="d2" d="M0 52 C120 30 220 36 330 48 S560 30 800 46 L800 70 L0 70Z"/>
+    <path class="d1" d="M0 62 C160 44 300 50 430 60 S650 50 800 58 L800 70 L0 70Z"/>
+  </svg>
+
+  <section class="route">
+    <h2>O roteiro</h2>
+    <div class="stops">
+      <div class="stop"><b>22 jan · sexta</b><span>Estrada até Jijoca, travessia para a vila</span></div>
+      <div class="stop hl"><b>23 jan · sábado</b><span>Passeio Lado Leste com o velho</span></div>
+      <div class="stop"><b>24 jan · domingo</b><span>Dia livre e pôr do sol na duna</span></div>
+      <div class="stop"><b>25 jan · segunda</b><span>Volta para São Luís</span></div>
+    </div>
+    <div class="bar" role="progressbar" aria-label="Espera até a viagem" aria-valuemin="0" aria-valuemax="100" id="bar"><i id="fill"></i></div>
+    <div class="barnote" id="barnote"></div>
+  </section>
+</main>
+
+<script>
+(function () {
+  var target = new Date("2027-01-22T00:00:00-03:00").getTime();
+  var start = new Date("2026-11-08T00:00:00-03:00").getTime();
+  var pad = function (n) { return String(n).padStart(2, "0"); };
+  var el = function (id) { return document.getElementById(id); };
+  function tick() {
+    var now = Date.now(), diff = target - now;
+    if (diff <= 0) {
+      el("clock").hidden = true; el("done").hidden = false;
+      el("fill").style.width = "100%"; el("barnote").textContent = "Chegou o dia.";
+      return;
+    }
+    var s = Math.floor(diff / 1000);
+    el("d").textContent = Math.floor(s / 86400);
+    el("h").textContent = pad(Math.floor(s % 86400 / 3600));
+    el("m").textContent = pad(Math.floor(s % 3600 / 60));
+    el("s").textContent = pad(s % 60);
+    var p = Math.min(100, Math.max(0, (now - start) / (target - start) * 100));
+    el("fill").style.width = p.toFixed(1) + "%";
+    el("bar").setAttribute("aria-valuenow", Math.round(p));
+    el("barnote").textContent = p.toFixed(0) + "% da espera já passou, desde o começo do planejamento em 8 de novembro.";
+  }
+  tick(); setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
